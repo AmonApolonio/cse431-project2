@@ -1,0 +1,32 @@
+### Get all users
+GET https://project1-djep.onrender.com/users
+
+### Get single user by ID
+GET https://project1-djep.onrender.com/users/67cb7ad01e3f2a67bfb9c608
+
+### Create a new user
+POST https://project1-djep.onrender.com/users
+Content-Type: application/json
+
+{
+  "firstName": "New",
+  "lastName": "User",
+  "email": "newuser@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "1990-01-01"
+}
+
+### Update an existing user
+PUT https://project1-djep.onrender.com/users/67cb7ad01e3f2a67bfb9c608
+Content-Type: application/json
+
+{
+  "firstName": "Updated",
+  "lastName": "User",
+  "email": "updateduser@example.com",
+  "favoriteColor": "Green",
+  "birthday": "1990-01-02"
+}
+
+### Delete a user
+DELETE https://project1-djep.onrender.com/users/67cb7ad01e3f2a67bfb9c608
