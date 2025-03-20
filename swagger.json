@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Users API",
-    "description": "Users API",
+    "title": "Project 2 API",
+    "description": "Project 2 API",
     "version": "1.0.0"
   },
-  "host": "project2-djep.onrender.com",
+  "host": "cse431-project2.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
@@ -29,13 +29,29 @@
         "tags": [
           "Users"
         ],
+        "summary": "Get all users",
         "description": "",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of users",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -46,42 +62,25 @@
         "tags": [
           "Users"
         ],
+        "summary": "Create a new user",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "User information",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "role": {
-                  "example": "any"
-                },
-                "isActive": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/User"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "User created successfully",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -94,6 +93,7 @@
         "tags": [
           "Users"
         ],
+        "summary": "Get a single user",
         "description": "",
         "produces": [
           "application/json"
@@ -103,12 +103,16 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "User ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User details",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "404": {
             "description": "Not Found"
@@ -122,48 +126,32 @@
         "tags": [
           "Users"
         ],
+        "summary": "Update a user",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "User ID"
           },
           {
             "name": "body",
             "in": "body",
+            "description": "Updated user information",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "role": {
-                  "example": "any"
-                },
-                "isActive": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/User"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User updated successfully",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "404": {
             "description": "Not Found"
@@ -177,18 +165,20 @@
         "tags": [
           "Users"
         ],
+        "summary": "Delete a user",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "User ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User deleted successfully"
           },
           "404": {
             "description": "Not Found"
@@ -204,13 +194,29 @@
         "tags": [
           "Products"
         ],
+        "summary": "Get all products",
         "description": "",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -221,45 +227,25 @@
         "tags": [
           "Products"
         ],
+        "summary": "Create a new product",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Product information",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "stockQuantity": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "brand": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "reviewCount": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Product"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Product created successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -272,6 +258,7 @@
         "tags": [
           "Products"
         ],
+        "summary": "Get a single product",
         "description": "",
         "produces": [
           "application/json"
@@ -281,12 +268,16 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Product ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Product details",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           },
           "404": {
             "description": "Not Found"
@@ -300,51 +291,32 @@
         "tags": [
           "Products"
         ],
+        "summary": "Update a product",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Product ID"
           },
           {
             "name": "body",
             "in": "body",
+            "description": "Updated product information",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "stockQuantity": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "brand": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "reviewCount": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Product"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Product updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           },
           "404": {
             "description": "Not Found"
@@ -358,18 +330,20 @@
         "tags": [
           "Products"
         ],
+        "summary": "Delete a product",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Product ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Product deleted successfully"
           },
           "404": {
             "description": "Not Found"
@@ -377,6 +351,78 @@
           "500": {
             "description": "Internal Server Error"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Sample Product"
+        },
+        "description": {
+          "type": "string",
+          "example": "This is a sample product description."
+        },
+        "price": {
+          "type": "number",
+          "example": 19.99
+        },
+        "stockQuantity": {
+          "type": "number",
+          "example": 100
+        },
+        "category": {
+          "type": "string",
+          "example": "Electronics"
+        },
+        "brand": {
+          "type": "string",
+          "example": "BrandName"
+        },
+        "rating": {
+          "type": "number",
+          "example": 4.5
+        },
+        "reviewCount": {
+          "type": "number",
+          "example": 10
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john.doe@example.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "Blue"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1990-01-01"
+        },
+        "role": {
+          "type": "string",
+          "example": "user"
+        },
+        "isActive": {
+          "type": "boolean",
+          "example": true
         }
       }
     }
