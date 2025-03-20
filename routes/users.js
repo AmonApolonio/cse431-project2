@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const usersController = require('../controllers/users');
+const { userValidationRules, validateId } = require('../middleware/userValidation');
 
 router.get('/', usersController.getAll);
-router.get('/:id', usersController.getSingle);
+router.get('/:id', validateId(), usersController.getSingle);
 
-router.post('/', usersController.createUser);
-router.put('/:id', usersController.updateUser);
-router.delete('/:id', usersController.deleteUser);
+router.post('/', userValidationRules(), usersController.createUser);
+router.put('/:id', validateId(), userValidationRules(), usersController.updateUser);
+router.delete('/:id', validateId(), usersController.deleteUser);
 
 module.exports = router;
