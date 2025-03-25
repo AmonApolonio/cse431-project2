@@ -3,6 +3,7 @@ const router = express.Router();
 
 const productsController = require('../controllers/products');
 const { productValidationRules, validateId } = require('../middleware/productValidation');
+const { isAuthenticated } = require('../middleware/authenticate.js')
 
 router.get('/', 
   /* #swagger.summary = "Get all products"
@@ -31,6 +32,7 @@ router.get('/:id',
 
 router.post('/', 
   productValidationRules(), 
+  isAuthenticated,
   /* #swagger.summary = "Create a new product"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -48,6 +50,7 @@ router.post('/',
 router.put('/:id', 
   validateId(), 
   productValidationRules(), 
+  isAuthenticated,
   /* #swagger.summary = "Update a product"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -69,7 +72,8 @@ router.put('/:id',
   productsController.updateProduct);
 
 router.delete('/:id', 
-  validateId(), 
+  validateId(),
+  isAuthenticated,
   /* #swagger.summary = "Delete a product"
      #swagger.parameters['id'] = {
          in: 'path',

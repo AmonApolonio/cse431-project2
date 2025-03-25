@@ -3,6 +3,7 @@ const router = express.Router();
 
 const usersController = require('../controllers/users');
 const { userValidationRules, validateId } = require('../middleware/userValidation');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.get('/', 
   /* #swagger.summary = "Get all users"
@@ -31,6 +32,7 @@ router.get('/:id',
 
 router.post('/', 
   userValidationRules(), 
+  isAuthenticated,
   /* #swagger.summary = "Create a new user"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -48,6 +50,7 @@ router.post('/',
 router.put('/:id', 
   validateId(), 
   userValidationRules(), 
+  isAuthenticated,
   /* #swagger.summary = "Update a user"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -70,6 +73,7 @@ router.put('/:id',
 
 router.delete('/:id', 
   validateId(), 
+  isAuthenticated,
   /* #swagger.summary = "Delete a user"
      #swagger.parameters['id'] = {
          in: 'path',
